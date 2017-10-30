@@ -1,0 +1,18 @@
+type Account {
+  id: ID!,
+  studentId: String!,
+  name: String
+}
+
+type Query {
+  account(studentId: String!): Account
+}
+
+type Mutation {
+  addAccount(studentId: String, name: String): Account
+}
+
+schema {
+  query: Query,
+  mutation: Mutation
+}
