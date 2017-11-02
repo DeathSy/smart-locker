@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { TouchableOpacity, Alert, Text, StyleSheet, Image } from 'react-native'
 
 import LockerImage from '../../statics/icons/locker.png'
 
@@ -35,11 +35,14 @@ export const styles = StyleSheet.create({
 })
 
 export const OtherCards = () => (
-  <View style={styles['container']}>
+  <TouchableOpacity
+    onPress={() => Alert.alert('Locker Unlocked')}
+    style={styles['container']}
+  >
     <Text style={styles['lockerTitle']}>Koichi</Text>
     <Image style={styles['lockerImage']} source={LockerImage} />
     <Text style={styles['lockerContent']}>อลัว 4</Text>
-  </View>
+  </TouchableOpacity>
 )
 
 export default OtherCards

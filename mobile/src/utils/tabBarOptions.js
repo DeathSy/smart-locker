@@ -5,7 +5,9 @@ export default function tabBarOptions (platform) {
     return {
       style: {
         backgroundColor: inactiveBackgroundColor
-      }
+      },
+      showIcon: true,
+      showLabel: false
     }
   }
 

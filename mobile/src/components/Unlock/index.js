@@ -1,5 +1,13 @@
 import React from 'react'
-import { Text, View, StyleSheet, Image, ScrollView } from 'react-native'
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Alert
+} from 'react-native'
 
 import App from '../App'
 import OtherCards from './OthersCard'
@@ -55,11 +63,14 @@ export const styles = StyleSheet.create({
 export const Index = () => (
   <ScrollView style={styles['container']}>
     <Text style={styles['titleText']}>Unlock Locker</Text>
-    <View style={styles['myLocker']}>
+    <TouchableOpacity
+      onPress={() => Alert.alert('Locker unlocked')}
+      style={styles['myLocker']}
+    >
       <Text style={styles['myLockerTitle']}>My Locker</Text>
       <Image style={styles['imageContainer']} source={LockerImage} />
       <Text style={styles['myLockerText']}>เกสรลำเจียก 9</Text>
-    </View>
+    </TouchableOpacity>
     <View style={styles['otherLocker']}>
       <OtherCards />
       <OtherCards />
