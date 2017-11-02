@@ -1,9 +1,11 @@
 import React from 'react'
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
-import ActionButton from 'react-native-action-button'
+import { connect } from 'react-redux'
 
 import App from '../App'
 import Card from './Card'
+import { removeAccount } from '../../ducks/account'
+import { mapStateToProps, mapActionToProps } from '../../utils/helper'
 
 export const styles = StyleSheet.create({
   container: {
@@ -33,28 +35,21 @@ export const styles = StyleSheet.create({
   }
 })
 
-const mockData = [
-  { name: 'Jerrylee', studentId: '59130500123', until: '9:23 PM' },
-  { name: 'Stefa', studentId: '57130500024', until: '3:30 PM' },
-  { name: 'Eric', studentId: '6013050064', until: '7:09 PM' },
-  { name: 'Jud', studentId: '58130500040', until: '9:48 PM' },
-  { name: 'Saw', studentId: '56130500017', until: '9:14 PM' }
-]
-
-export const Index = () => (
+export const Index = ({ account, removeAccount }) => (
   <ScrollView style={styles['container']}>
     <Text style={styles['titleText']}>Permission</Text>
-    <View style={styles['cardsContainer']}>{renderCards(mockData)}</View>
-    <ActionButton
-      buttonColor='red'
-      useNativeFeedBack={false}
-      offsetY={320}
-      onPress={() => null}
-    />
+    <View style={styles['cardsContainer']}>
+      {renderCards(account.accounts, removeAccount)}
+    </View>
   </ScrollView>
 )
 
-export const renderCards = datas =>
-  datas.map((data, index) => <Card key={index} detail={data} />)
+export const renderCards = (datas, removeAction) =>
+  datas.map((data, index) => (
+    <Card key={index} detail={data} onRemove={removeAction} />
+  ))
 
-export default App(Index)
+export default connect(
+  mapStateToProps(['account']),
+  mapActionToProps({ removeAccount })
+)(App(Index))

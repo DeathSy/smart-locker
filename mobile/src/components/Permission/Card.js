@@ -41,7 +41,9 @@ export const styles = StyleSheet.create({
   exit: {
     position: 'absolute',
     left: 150,
-    top: 10
+    top: 10,
+    width: 50,
+    height: 50
   },
   exitText: {
     color: '#ccc',
@@ -50,14 +52,14 @@ export const styles = StyleSheet.create({
   }
 })
 
-export const Card = ({ detail }) => (
+export const Card = ({ detail, onRemove }) => (
   <View style={styles['container']}>
     <TouchableOpacity
       style={styles['exit']}
       onPress={() =>
         Alert.alert('Are you sure you want to remove this person?', '', [
           { text: 'cancel', onPress: () => null },
-          { text: 'yes', onPress: () => null }
+          { text: 'yes', onPress: () => onRemove(detail.studentId) }
         ])}
     >
       <Text style={styles['exitText']}>X</Text>
